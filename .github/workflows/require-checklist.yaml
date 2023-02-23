@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, edited, synchronize]
 jobs:
-  job1:
+  check_pr_body:
     runs-on: ubuntu-latest
     steps:
       - uses: mheap/require-checklist-action@v2
