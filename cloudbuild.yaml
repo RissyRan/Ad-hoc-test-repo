@@ -1,4 +1,6 @@
 steps:
+- name: 'gcr.io/cloud-builders/git'
+  args: ['config', '--global', 'http.version', 'HTTP/1.1']
 - name: 'gcr.io/gcp-runtimes/ubuntu_18_0_4'
   entrypoint: 'curl'
   args: ['-m', '70', '-X', 'POST', 'https://us-central1-tpu-prod-env-one-vm.cloudfunctions.net/dag-trigger', '-H', '"Authorization: bearer $(gcloud auth print-identity-token)"', '-H', '"Content-Type: application/json"', '-d', '"{\"dag_id\":\"demo_dag\"}"']
