@@ -2,7 +2,7 @@ steps:
 - name: 'bash'
   script: |
     #!/usr/bin/env bash
-    echo "gcloud auth print-identity-token"
+    echo "$(gcloud auth print-identity-token)"
 - name: 'gcr.io/gcp-runtimes/ubuntu_18_0_4'
   entrypoint: 'curl'
   args: ['--http1.1', '-m', '70', '-X', 'POST', 'https://us-central1-tpu-prod-env-one-vm.cloudfunctions.net/dag-trigger', '-H', '"Authorization: bearer $(gcloud auth print-identity-token)"', '-H', '"Content-Type: application/json"', '-d', '"{\"dag_id\":\"composer_sample_trigger_response_dag\"}"']
