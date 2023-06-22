@@ -1,4 +1,8 @@
 steps:
-- name: 'gcr.io/gcp-runtimes/ubuntu_18_0_4'
-  entrypoint: 'curl'
-  args: ['-m', '70', '-X', 'POST', 'https://us-central1-tpu-prod-env-one-vm.cloudfunctions.net/dag-trigger', '-H', '"Authorization: bearer $(gcloud auth print-identity-token)"', '-H', '"Content-Type: application/json"', '-d', '"{\"dag_id\":\"demo_dag\"}"']
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: "bash"
+  args: 
+    - "-c"
+    - |
+        echo "sending the request..."
+        curl -m 70 -X POST http://us-central1-tpu-prod-env-one-vm.cloudfunctions.net/dag-trigger-http -H "Content-Type: application/json" -d "{\"dag_id\":\"composer_sample_trigger_response_dag\"}" -v
